@@ -1,14 +1,19 @@
 import praw
 import sys
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 subreddit_name = sys.argv[1]
 post_id = sys.argv[2]
 
 # Create a Reddit instance
 reddit = praw.Reddit(
-    client_id='IHoJop-M58PbO-h3NnbS7w',
-    client_secret='5ysclq7UJe1-pG5h-3ZPeZvYgLlEbA',
-    user_agent='chainlink',
+    client_id=os.getenv("REDDIT_CLIENT_ID"),
+    client_secret=os.getenv("REDDIT_CLIENT_SECRET"),
+    user_agent=os.getenv("REDDIT_USER_AGENT"),
 )
 
 # Access the specified subreddit and post
